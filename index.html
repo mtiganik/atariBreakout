@@ -13,9 +13,13 @@
 
   <span id="height">H: <span></span></span>
   <span id="width">W: <span></span></span>
-  <span class="material-symbols-outlined">
+  <!-- <span class="material-symbols-outlined">
     fast_forward
-    </span>
+    </span> -->
+    <img id="fastForward" class="fastForward" src="images/fast-disabled.svg" alt="Fast Forward">
+    <!-- <img id="fastDisabled" src="images/fast-forward.svg" alt="Fast Disabled"> -->
+  
+
   <div class="board">
     <div class="grid-container" id="grid-container">
     </div>
@@ -23,6 +27,13 @@
   </div>
 
   <script> 
+    const fastForward = document.getElementById('fastForward');
+
+    fastForward.addEventListener('click', () => {
+      fastForward.src = fastForward.src.includes("fast-enabled") ? "images/fast-disabled.svg" : "images/fast-enabled.svg"
+      fastForward.style.backgroundColor = fastForward.src.includes("fast-enabled") ? "blue" : "white"
+    });
+
         function getWindowSize(){
           document.querySelector("#height span").innerHTML = window.innerHeight;
           document.querySelector("#width span").innerHTML = window.innerWidth;
