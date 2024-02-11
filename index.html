@@ -5,43 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="boards.js" ></script>
   <title>Atari Breakout</title>
 </head>
 <body>
 
-  <span id="height">Height: <span></span></span>
-  <span id="width">Width: <span></span></span>
+  <span id="height">H: <span></span></span>
+  <span id="width">W: <span></span></span>
+  <span class="material-symbols-outlined">
+    fast_forward
+    </span>
   <div class="board">
-    <div class="grid-container">
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>  
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
+    <div class="grid-container" id="grid-container">
     </div>
     
   </div>
 
-  <script>
-        const height = document.querySelector("#height span");
-        const width = document.querySelector("#width span");
- 
-        // Function to update height and width
-        function updateSize() {
-            height.innerHTML = window.innerHeight;
-            width.innerHTML = window.innerWidth;
+  <script> 
+        function getWindowSize(){
+          document.querySelector("#height span").innerHTML = window.innerHeight;
+          document.querySelector("#width span").innerHTML = window.innerWidth;
         }
+        // Function to update height and width
  
         // Add event listener for window resize
-        window.addEventListener('resize', updateSize);
- 
+        window.addEventListener('resize', getWindowSize);
+        getWindowSize();
         // Initial update
-        updateSize();
+        // fiveTimesFiveBoard();
+        centeredRows();
+
 </script>
 
 
