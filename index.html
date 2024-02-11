@@ -5,34 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <script src="boards.js" ></script>
   <title>Atari Breakout</title>
 </head>
 <body>
 
-  <span id="height">H: <span></span></span>
-  <span id="width">W: <span></span></span>
-  <!-- <span class="material-symbols-outlined">
-    fast_forward
-    </span> -->
-    <img id="fastForward" class="fastForward" src="images/fast-disabled.svg" alt="Fast Forward">
-    <!-- <img id="fastDisabled" src="images/fast-forward.svg" alt="Fast Disabled"> -->
   
-
   <div class="board">
+    <div class="header">
+      <span id="height">H: <span></span></span>
+      <span id="width">W: <span></span></span>
+      <img id="fastForward" class="fastForward" src="images/fast-disabled.svg" alt="Fast Forward">
+      <img id="pause" class="pause" src="images/pause.svg" alt="Pause">
+    </div>
     <div class="grid-container" id="grid-container">
     </div>
     
   </div>
 
   <script> 
-    const fastForward = document.getElementById('fastForward');
-
-    fastForward.addEventListener('click', () => {
-      fastForward.src = fastForward.src.includes("fast-enabled") ? "images/fast-disabled.svg" : "images/fast-enabled.svg"
-      fastForward.style.backgroundColor = fastForward.src.includes("fast-enabled") ? "blue" : "white"
+    const fastForwardBtn = document.getElementById('fastForward');
+    const pauseBtn = document.getElementById("pause")
+    let isFastForward = false
+    let isPause = false
+    fastForwardBtn.addEventListener('click', () => {
+      isFastForward = !isFastForward
+      fastForwardBtn.src = isFastForward ? "images/fast-enabled.svg": "images/fast-disabled.svg"
+      fastForwardBtn.style.backgroundColor = isFastForward ? "rgb(0,125,0)" : "black"
     });
+    pauseBtn.addEventListener("click", () => {
+      isPause = !isPause
+      pauseBtn.src = isPause ? "images/continue.svg" : "images/pause.svg"
+    })
 
         function getWindowSize(){
           document.querySelector("#height span").innerHTML = window.innerHeight;
