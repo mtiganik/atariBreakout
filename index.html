@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/general.css">
+  <link rel="stylesheet" href="styles/dropdown.css">
   <script src="boards.js" ></script>
   <title>Atari Breakout</title>
 </head>
@@ -13,10 +14,24 @@
   
   <div class="board">
     <div class="header">
-      <span id="height">H: <span></span></span>
-      <span id="width">W: <span></span></span>
-      <img id="fastForward" class="fastForward" src="images/fast-disabled.svg" alt="Fast Forward">
-      <img id="pause" class="pause" src="images/pause.svg" alt="Pause">
+      <div class="left-menu-items">
+        <span id="height">H: <span></span></span>
+        <span id="width">W: <span></span></span>
+      </div>
+      <div class="right-menu-items" >
+        <div class="dropdown" tabindex="1">
+          <i class="db2" tabindex="1"></i>
+          <a class="dropbtn">Levels</a>
+           <div class="dropdown-content">
+              <a href="#">Level 1</a>
+              <a href="#">Level 2</a>
+              <a href="#">Level 3</a>
+           </div>
+        </div>
+        <img id="fastForward" class="fastForward" src="images/fast-forward.svg" alt="Fast Forward">
+        <img id="pause" class="pause" src="images/pause.svg" alt="Pause">
+        
+      </div>
     </div>
     <div class="grid-container" id="grid-container">
     </div>
@@ -30,7 +45,7 @@
     let isPause = false
     fastForwardBtn.addEventListener('click', () => {
       isFastForward = !isFastForward
-      fastForwardBtn.src = isFastForward ? "images/fast-enabled.svg": "images/fast-disabled.svg"
+      // fastForwardBtn.src = isFastForward ? "images/fast-enabled.svg": "images/fast-disabled.svg"
       fastForwardBtn.style.backgroundColor = isFastForward ? "rgb(0,125,0)" : "black"
     });
     pauseBtn.addEventListener("click", () => {

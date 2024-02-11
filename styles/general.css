@@ -27,5 +27,12 @@
 }
 
 .header {
-  /* background-color: white; */
+  display:grid;
+  grid-template-columns: auto auto;
+}
+
+.right-menu-items {
+  margin-top: 0px;
+  margin-left:auto;
+  margin-right: 0px;
 }
