@@ -9,8 +9,41 @@
 </head>
 <body>
 
+  <span id="height">Height: <span></span></span>
+  <span id="width">Width: <span></span></span>
   <div class="board">
-    in board
+    <div class="grid-container">
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>  
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+    </div>
+    
   </div>
+
+  <script>
+        const height = document.querySelector("#height span");
+        const width = document.querySelector("#width span");
+ 
+        // Function to update height and width
+        function updateSize() {
+            height.innerHTML = window.innerHeight;
+            width.innerHTML = window.innerWidth;
+        }
+ 
+        // Add event listener for window resize
+        window.addEventListener('resize', updateSize);
+ 
+        // Initial update
+        updateSize();
+</script>
+
+
 </body>
 </html>
