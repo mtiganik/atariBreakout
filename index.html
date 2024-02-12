@@ -8,9 +8,11 @@
   <link rel="stylesheet" href="styles/dropdown.css">
   <script src="boards.js" ></script>
   <title>Atari Breakout</title>
+  <script>
+    
+  </script>
 </head>
-<body>
-
+<body onkeypress="handleKeyPress(event)">
   
   <div class="board">
     <div class="header">
@@ -35,6 +37,7 @@
     </div>
     <div class="grid-container" id="grid-container">
     </div>
+    <div class="slider" id="slider">&nbsp</div>
     
   </div>
 
@@ -53,20 +56,35 @@
       pauseBtn.src = isPause ? "images/continue.svg" : "images/pause.svg"
     })
 
-        function getWindowSize(){
-          document.querySelector("#height span").innerHTML = window.innerHeight;
-          document.querySelector("#width span").innerHTML = window.innerWidth;
-        }
-        // Function to update height and width
- 
-        // Add event listener for window resize
-        window.addEventListener('resize', getWindowSize);
-        getWindowSize();
-        // Initial update
-        // fiveTimesFiveBoard();
-        centeredRows();
+    function getWindowSize() {
+      document.querySelector("#height span").innerHTML = window.innerHeight;
+      document.querySelector("#width span").innerHTML = window.innerWidth;
+    }
+    function handleKeyPress(e) {
+      console.log(e)
+      let key_code = e.which || e.keyCode;
+      console.log(key_code)
+    }
+    // document.addEventListener('keyup', event => {
+    //   const sliderItem = document.getElementById("slider")
+    //   if(event.code === 'ArrowLeft'){
+    //     console.dir(sliderItem)
+    //     console.log(sliderItem.offsetLeft)
+    //     sliderItem.offsetLeft = sliderItem.offsetLeft + 5
+    //     console.log(sliderItem.offsetLeft)
+    //   }
+    //   if(event.code === 'ArrowRight'){
+    //     console.log("Right arrow pressed")
+    //   }
+    // })
 
-</script>
+    window.addEventListener('resize', getWindowSize);
+    getWindowSize();
+    // Initial update
+    //fiveTimesFiveBoard();
+    centeredRows();
+
+  </script>
 
 
 </body>

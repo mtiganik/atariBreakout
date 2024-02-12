@@ -1,9 +1,11 @@
 .board {
+  position:relative;
   background-color: black;
   border-style: solid;
   border-color: yellow;
   color: white;
   height: 90vh;
+  /* align-items: center; */
   /* min-height: 600px; */
 }
 
@@ -35,4 +37,18 @@
   margin-top: 0px;
   margin-left:auto;
   margin-right: 0px;
+}
+
+.slider {
+  position: absolute;
+  bottom: 10px;
+  background-color: white;
+  margin:auto;
+  /* margin-top:auto;
+  margin-bottom: 5px;
+  justify-content: center; */
+  width: 16%;
+  /* text-align: right; */
+  left:42%;
+  border-radius: 20%;
 }
