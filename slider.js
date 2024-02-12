@@ -9,22 +9,64 @@ function initSlider() {
   sliderItem.style.left = window.innerWidth / 2.5 + "px"
   sliderItem.style.borderRadius = "20%"
 }
+let touchMoveX = 0
+document.addEventListener("touchmove", event => {
+  clearIntervalHandler()
+  handleTouchMove(event)
+})
 
+document.addEventListener("touchstart", event => {
+  if (inter == -1) {
+    handleTouchMove(event)
+  }
+})
 
-window.onkeydown = function() {
-  if(inter == -1){
-    let e = event.keyCode
-    inter = setInterval(function(){
-      if(e == 37){ // left
-        sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
+function handleTouchMove(event) {
+  
+    const x = event.touches[0].clientX
+    inter = setInterval(function () {
+      if (x < parseInt(sliderItem.style.left) + window.innerWidth * 0.09) { // left
+        console.log("left")
+        moveLeft()
       }
-      if(e == 39){ // right
-        sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
+      else if(x > parseInt(sliderItem.style.left) + window.innerWidth * 0.11) { // right
+        console.log("right")
+        moveRight()
+      }else{
+        console.log("clear")
+        clearIntervalHandler()
+      }
+    }, HOP)
+  
+}
+
+
+
+document.addEventListener("keydown", event => {
+  if(inter == -1){
+    let e = event.code
+    inter = setInterval(function(){
+      if(event.code == "ArrowLeft"){ // left
+        moveLeft()
+      }
+      if(event.code == "ArrowRight"){ // right
+        moveRight()
       }
     } , HOP)
   }
-}
-window.onkeyup = function() {
-  clearInterval(inter)
-  inter = -1
-}
+})
+
+  document.addEventListener("touchend", clearIntervalHandler, false)
+  document.addEventListener("keyup", clearIntervalHandler, false)
+  function clearIntervalHandler(event){
+    clearInterval(inter)
+    inter = -1
+  }
+
+  function moveRight() {
+    sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
+  }
+
+  function moveLeft(){
+    sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
+  }
