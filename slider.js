@@ -9,39 +9,33 @@ function initSlider() {
   sliderItem.style.left = window.innerWidth / 2.5 + "px"
   sliderItem.style.borderRadius = "20%"
 }
+
+// Touch screen handle
 let touchMoveX = 0
 document.addEventListener("touchmove", event => {
-  clearIntervalHandler()
-  handleTouchMove(event)
+  touchMoveX = event.touches[0].clientX
 })
 
 document.addEventListener("touchstart", event => {
+  touchMoveX = event.touches[0].clientX
   if (inter == -1) {
-    handleTouchMove(event)
+    inter = setInterval(handleTouchMove, HOP)
   }
 })
 
 function handleTouchMove(event) {
-  
-    const x = event.touches[0].clientX
-    inter = setInterval(function () {
-      if (x < parseInt(sliderItem.style.left) + window.innerWidth * 0.09) { // left
-        console.log("left")
-        moveLeft()
-      }
-      else if(x > parseInt(sliderItem.style.left) + window.innerWidth * 0.11) { // right
-        console.log("right")
-        moveRight()
-      }else{
-        console.log("clear")
-        clearIntervalHandler()
-      }
-    }, HOP)
-  
+  if (touchMoveX < parseInt(sliderItem.style.left) + window.innerWidth * 0.09) { // left
+    console.log("left")
+    moveLeft()
+  }
+  else if (touchMoveX > parseInt(sliderItem.style.left) + window.innerWidth * 0.11) { // right
+    console.log("right")
+    moveRight()
+  } 
 }
 
 
-
+// Keypress handle
 document.addEventListener("keydown", event => {
   if(inter == -1){
     let e = event.code
