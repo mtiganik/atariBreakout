@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles/general.css">
   <link rel="stylesheet" href="styles/dropdown.css">
   <script src="boards.js" ></script>
+  <script src="slider.js"></script>
   <title>Atari Breakout</title>
   <script>
     
@@ -46,6 +47,12 @@
     const pauseBtn = document.getElementById("pause")
     let isFastForward = false
     let isPause = false
+
+    // SLIDER movement
+    let sliderItem = null
+    let inter = -1;
+    let HOP = 30; // milliseconds aka speed
+
     fastForwardBtn.addEventListener('click', () => {
       isFastForward = !isFastForward
       fastForwardBtn.style.backgroundColor = isFastForward ? "rgb(0,125,0)" : "black"
@@ -61,66 +68,10 @@
       sliderItem.style.left = window.innerWidth / 2.5 + "px"
     }
 
-    // SLIDER movement
-    let sliderItem = null
-    function initSlider() {
-      sliderItem = document.getElementById("slider")
-      sliderItem.style.position = "absolute"
-      sliderItem.style.backgroundColor = "white"
-      sliderItem.style.width = "16%"
-      sliderItem.style.bottom = "10px"
-      sliderItem.style.margin = "auto"
-      sliderItem.style.left = window.innerWidth / 2.5 + "px"
-      sliderItem.style.borderRadius = "20%"
-    }
-    function handleKeyPress(e) {
-      // let key_code = e.which || e.keyCode;
-      // if(key_code === 37){ // left
-      //   sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
-      // }
-      // if(key_code === 39){ // right
-      //   sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
-      // }
-      // console.log(key_code)
-    }
-    initSlider();
-    document.addEventListener('keydown', event => {
-      // if(event.code === 'ArrowLeft'){
-      //   sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
-      //   sliderItem.offsetLeft = sliderItem.offsetLeft + 5
-      // }
-      // if(event.code === 'ArrowRight'){
-      //   sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
-      // }
-    })
-    let inter = -1;
-    let HOP = 30; // milliseconds aka speed
-    window.onkeydown = function() {
-      if(inter == -1){
-        let e = event.keyCode
-        inter = setInterval(function(){
-          if(e == 37){ // left
-            sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
-          }
-          if(e == 39){ // right
-            sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
-          }
-        } , HOP)
-      }
-    }
-    window.onkeyup = function() {
-      clearInterval(inter)
-      inter = -1
-      // var e = event.keyCode
-      // if(e == 37){
-      //   sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
-      // }
-      // if(e == 39){
-      //   sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
-      // }
-    }
 
     window.addEventListener('resize', getWindowSize);
+    initSlider();
+
     getWindowSize();
     // Initial update
     //fiveTimesFiveBoard();
