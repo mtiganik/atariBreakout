@@ -38,7 +38,8 @@
     </div>
     <div class="grid-container" id="grid-container">
     </div>
-    <div class="ball">&nbsp</div>
+    <div class="console">Press any key to start</div>
+    <div class="ball" id="ball">&nbsp</div>
     <div class="slider" id="slider">&nbsp</div>
     
   </div>
@@ -47,12 +48,8 @@
     const fastForwardBtn = document.getElementById('fastForward');
     const pauseBtn = document.getElementById("pause")
     let isFastForward = false
-    let isPause = false
+    let isPause = true
 
-    // SLIDER movement
-    let sliderItem = null
-    let inter = -1;
-    let HOP = 30; // milliseconds aka speed
 
     fastForwardBtn.addEventListener('click', () => {
       isFastForward = !isFastForward

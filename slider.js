@@ -1,3 +1,9 @@
+// SLIDER movement
+let sliderItem = null
+let inter = -1;
+let HOP = 30; // milliseconds aka speed
+// Touch screen handle
+let touchMoveX = 0
 
 function initSlider() {
   sliderItem = document.getElementById("slider")
@@ -10,8 +16,6 @@ function initSlider() {
   sliderItem.style.borderRadius = "20%"
 }
 
-// Touch screen handle
-let touchMoveX = 0
 document.addEventListener("touchmove", event => {
   touchMoveX = event.touches[0].clientX
 })
@@ -25,11 +29,9 @@ document.addEventListener("touchstart", event => {
 
 function handleTouchMove(event) {
   if (touchMoveX < parseInt(sliderItem.style.left) + window.innerWidth * 0.09) { // left
-    console.log("left")
     moveLeft()
   }
   else if (touchMoveX > parseInt(sliderItem.style.left) + window.innerWidth * 0.11) { // right
-    console.log("right")
     moveRight()
   } 
 }
