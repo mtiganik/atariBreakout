@@ -12,7 +12,7 @@
     
   </script>
 </head>
-<body onkeypress="handleKeyPress(event)">
+<body>
   
   <div class="board">
     <div class="header">
@@ -48,7 +48,6 @@
     let isPause = false
     fastForwardBtn.addEventListener('click', () => {
       isFastForward = !isFastForward
-      // fastForwardBtn.src = isFastForward ? "images/fast-enabled.svg": "images/fast-disabled.svg"
       fastForwardBtn.style.backgroundColor = isFastForward ? "rgb(0,125,0)" : "black"
     });
     pauseBtn.addEventListener("click", () => {
@@ -59,24 +58,67 @@
     function getWindowSize() {
       document.querySelector("#height span").innerHTML = window.innerHeight;
       document.querySelector("#width span").innerHTML = window.innerWidth;
+      sliderItem.style.left = window.innerWidth / 2.5 + "px"
+    }
+
+    // SLIDER movement
+    let sliderItem = null
+    function initSlider() {
+      sliderItem = document.getElementById("slider")
+      sliderItem.style.position = "absolute"
+      sliderItem.style.backgroundColor = "white"
+      sliderItem.style.width = "16%"
+      sliderItem.style.bottom = "10px"
+      sliderItem.style.margin = "auto"
+      sliderItem.style.left = window.innerWidth / 2.5 + "px"
+      sliderItem.style.borderRadius = "20%"
     }
     function handleKeyPress(e) {
-      console.log(e)
-      let key_code = e.which || e.keyCode;
-      console.log(key_code)
+      // let key_code = e.which || e.keyCode;
+      // if(key_code === 37){ // left
+      //   sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
+      // }
+      // if(key_code === 39){ // right
+      //   sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
+      // }
+      // console.log(key_code)
     }
-    // document.addEventListener('keyup', event => {
-    //   const sliderItem = document.getElementById("slider")
-    //   if(event.code === 'ArrowLeft'){
-    //     console.dir(sliderItem)
-    //     console.log(sliderItem.offsetLeft)
-    //     sliderItem.offsetLeft = sliderItem.offsetLeft + 5
-    //     console.log(sliderItem.offsetLeft)
-    //   }
-    //   if(event.code === 'ArrowRight'){
-    //     console.log("Right arrow pressed")
-    //   }
-    // })
+    initSlider();
+    document.addEventListener('keydown', event => {
+      // if(event.code === 'ArrowLeft'){
+      //   sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
+      //   sliderItem.offsetLeft = sliderItem.offsetLeft + 5
+      // }
+      // if(event.code === 'ArrowRight'){
+      //   sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
+      // }
+    })
+    let inter = -1;
+    let HOP = 30; // milliseconds aka speed
+    window.onkeydown = function() {
+      if(inter == -1){
+        let e = event.keyCode
+        inter = setInterval(function(){
+          if(e == 37){ // left
+            sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
+          }
+          if(e == 39){ // right
+            sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
+          }
+        } , HOP)
+      }
+    }
+    window.onkeyup = function() {
+      clearInterval(inter)
+      inter = -1
+      // var e = event.keyCode
+      // if(e == 37){
+      //   sliderItem.style.left = parseInt(sliderItem.style.left) - 5 + "px"
+      // }
+      // if(e == 39){
+      //   sliderItem.style.left = parseInt(sliderItem.style.left) + 5 + "px"
+      // }
+    }
 
     window.addEventListener('resize', getWindowSize);
     getWindowSize();
