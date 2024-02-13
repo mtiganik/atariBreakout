@@ -1,7 +1,8 @@
+
 // SLIDER movement
 let sliderItem = null
-let inter = -1;
-let HOP = 30; // milliseconds aka speed
+let sInter = -1;
+let sHOP = 30; // milliseconds aka speed
 // Touch screen handle
 let touchMoveX = 0
 
@@ -22,8 +23,8 @@ document.addEventListener("touchmove", event => {
 
 document.addEventListener("touchstart", event => {
   touchMoveX = event.touches[0].clientX
-  if (inter == -1) {
-    inter = setInterval(handleTouchMove, HOP)
+  if (sInter == -1) {
+    sInter = setInterval(handleTouchMove, sHOP)
   }
 })
 
@@ -39,24 +40,24 @@ function handleTouchMove(event) {
 
 // Keypress handle
 document.addEventListener("keydown", event => {
-  if(inter == -1){
+  if(sInter == -1){
     let e = event.code
-    inter = setInterval(function(){
+    sInter = setInterval(function(){
       if(event.code == "ArrowLeft"){ // left
         moveLeft()
       }
       if(event.code == "ArrowRight"){ // right
         moveRight()
       }
-    } , HOP)
+    } , sHOP)
   }
 })
 
   document.addEventListener("touchend", clearIntervalHandler, false)
   document.addEventListener("keyup", clearIntervalHandler, false)
   function clearIntervalHandler(event){
-    clearInterval(inter)
-    inter = -1
+    clearInterval(sInter)
+    sInter = -1
   }
 
   function moveRight() {

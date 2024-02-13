@@ -39,7 +39,7 @@
   margin-right: 0px;
 }
 
-.ball {
+/* .ball {
   position: absolute;
   background-color: white;
   width: 20px;
@@ -47,9 +47,9 @@
   bottom: 30px;
   border-radius: 10px;
   left: 50%
-}
+} */
 
-.console {
+.welcome {
   justify-content: center;
   width: 100%;
   color: white;

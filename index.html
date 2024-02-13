@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles/dropdown.css">
   <script src="boards.js" ></script>
   <script src="slider.js"></script>
+  <script src="ball.js"></script>
   <title>Atari Breakout</title>
   <script>
     
@@ -38,7 +39,7 @@
     </div>
     <div class="grid-container" id="grid-container">
     </div>
-    <div class="console">Press any key to start</div>
+    <div class="welcome" id="welcome">Press any key to start</div>
     <div class="ball" id="ball">&nbsp</div>
     <div class="slider" id="slider">&nbsp</div>
     
@@ -50,7 +51,7 @@
     let isFastForward = false
     let isPause = true
 
-
+    
     fastForwardBtn.addEventListener('click', () => {
       isFastForward = !isFastForward
       fastForwardBtn.style.backgroundColor = isFastForward ? "rgb(0,125,0)" : "black"
@@ -69,6 +70,7 @@
 
     window.addEventListener('resize', getWindowSize);
     initSlider();
+    initBall();
 
     getWindowSize();
     // Initial update
