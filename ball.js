@@ -28,6 +28,27 @@ document.addEventListener("keydown", event => {
     console.log(ball.offsetWidth)
     if(bInter == -1){
       bInter = setInterval(() => {
+        for (let tile of tiles){
+          if(isColliding(ball, tile)){
+            tile.style.display = "none"
+            const currTile = tile.getBoundingClientRect();
+            // console.log(parseInt(ball.style.left) + " " +tile.style.left )
+            // console.log(parseInt(ball.style.left) + " " +parseInt(tile.style.left) + tile.offsetWidth )
+            if(parseInt(ball.style.left) <= currTile.left
+            || parseInt(ball.style.left) >= (currTile.left + currTile.width)){
+          dx = -dx
+          }
+          // console.log(parseInt(ball.style.top) + " " +parseInt(tile.style.top) )
+          // console.log(parseInt(ball.style.top) + " " +parseInt(tile.style.top) + tile.offsetHeight )
+
+          if (parseInt(ball.style.top) <= currTile.top || 
+          parseInt(ball.style.left) >= (currTile.top + currTile.height)){
+            dy = -dy
+          }
+          // clearIntervalHandler()        
+        }
+        }
+
         if(parseInt(ball.style.left) <= boardLeft || parseInt(ball.style.left) >= (boardWidth -ball.offsetWidth)){
           dx = -dx
         }
@@ -51,4 +72,18 @@ function getBoardComputedStyles(){
   let boardLeft = parseInt(boardComputedStyle.left)
   let boardTop = parseInt(boardComputedStyle.top)
   return [boardWidth,boardHeight, boardLeft, boardTop];
+}
+
+function isColliding(element1, element2){
+  const rect1 = element1.getBoundingClientRect();
+  const rect2 = element2.getBoundingClientRect();
+  return !(rect1.right < rect2.left ||
+    rect1.left > rect2.right ||
+    rect1.bottom < rect2.top ||
+    rect1.top > rect2.bottom)
+}
+
+function clearIntervalHandler() {
+  clearInterval(bInter)
+  bInter = -1
 }

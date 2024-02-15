@@ -11,6 +11,7 @@ function fiveTimesFiveBoard() {
       i == 3 ? "rgb(0,0,155)" : i == 4 ? "rgb(155,0,155)" : "rgb(155,155,0";
       newDiv.style.borderRadius = "1px"
       parent.appendChild(newDiv)
+      tiles.push(newDiv)
     }
   }
 }
@@ -29,8 +30,9 @@ function centeredRows() {
       i == 0 ? "rgb(155,0,0)" : i == 1 ? "rgb(155,72,0)" : i == 2 ? "rgb(155,155,0)":
       i == 3 ? "rgb(0,125,0)" : i == 4 ? "rgb(0,0,155)" : i == 5 ? "rgb(155,0,155)" : "rgb(0,155,155";
       newDiv.style.borderRadius = "1px"
-
       parent.appendChild(newDiv)
+      tiles.push(newDiv)
     }
   }
 }
+
