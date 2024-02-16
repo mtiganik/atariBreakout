@@ -1,8 +1,9 @@
 let ball = null
-let dx = 5;
+let dx = -5;
 let dy = -5;
-let ballHOP = 30 // milliseconds aka speed
+let ballHOP = 15 // milliseconds aka speed
 bInter = -1
+
 function initBall() {
   ball = document.getElementById("ball")
   ball.style.position = "absolute";
@@ -21,6 +22,7 @@ function initBall() {
 document.addEventListener("keydown", event => {
   if(isPause){
     isPause = false
+    pauseBtn.src =  "images/pause.svg"
     const welcome = document.getElementById("welcome")
     welcome.style.display = "none"
 
@@ -29,23 +31,29 @@ document.addEventListener("keydown", event => {
     if(bInter == -1){
       bInter = setInterval(() => {
         for (let tile of tiles){
-          if(isColliding(ball, tile)){
-            tile.style.display = "none"
-            const currTile = tile.getBoundingClientRect();
-            // console.log(parseInt(ball.style.left) + " " +tile.style.left )
-            // console.log(parseInt(ball.style.left) + " " +parseInt(tile.style.left) + tile.offsetWidth )
-            if(parseInt(ball.style.left) <= currTile.left
-            || parseInt(ball.style.left) >= (currTile.left + currTile.width)){
-          dx = -dx
-          }
-          // console.log(parseInt(ball.style.top) + " " +parseInt(tile.style.top) )
-          // console.log(parseInt(ball.style.top) + " " +parseInt(tile.style.top) + tile.offsetHeight )
+          if(tile.style.backgroundColor != "black"){
 
-          if (parseInt(ball.style.top) <= currTile.top || 
-          parseInt(ball.style.left) >= (currTile.top + currTile.height)){
-            dy = -dy
-          }
-          // clearIntervalHandler()        
+            if(isColliding(ball, tile)){
+              tile.style.backgroundColor = "black"
+              const ballRect = ball.getBoundingClientRect();
+              const tileRect = tile.getBoundingClientRect();
+              if (ballRect.top >= tileRect.top || 
+              ballRect.top <= (tileRect.top + tileRect.height)){
+                console.log("change Y coord")
+
+                dy = -dy
+              }
+              if(ballRect.left <= tileRect.left
+                || ballRect.left >= (tileRect.left + tileRect.width)){
+                  console.log("change X coord")
+                console.dir( ballRect)
+                console.dir(tileRect)
+                dx = -dx
+              }
+              
+              // clearIntervalHandler()
+              break;
+            }
         }
         }
 
@@ -62,6 +70,7 @@ document.addEventListener("keydown", event => {
 
   }
 })
+
 
 function getBoardComputedStyles(){
   let board = document.getElementById("board");

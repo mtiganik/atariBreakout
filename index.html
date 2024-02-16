@@ -47,20 +47,27 @@
 
   <script> 
     const fastForwardBtn = document.getElementById('fastForward');
-    const pauseBtn = document.getElementById("pause")
     let isFastForward = false
     let isPause = true
     let tiles = []
+    const pauseBtn = document.getElementById("pause")
 
     
     fastForwardBtn.addEventListener('click', () => {
       isFastForward = !isFastForward
       fastForwardBtn.style.backgroundColor = isFastForward ? "rgb(0,125,0)" : "black"
     });
-    pauseBtn.addEventListener("click", () => {
-      isPause = !isPause
-      pauseBtn.src = isPause ? "images/continue.svg" : "images/pause.svg"
-    })
+
+  pauseBtn.addEventListener("click", () => {
+    isPause = !isPause
+    if (isPause) {
+      clearIntervalHandler();
+      const welcome = document.getElementById("welcome")
+      welcome.style.display = "inline-block"
+      welcome.innerHTML = "Paused. Press any key to continue"
+      pauseBtn.src =  "images/continue.svg"
+    }
+  })
 
     function getWindowSize() {
       document.querySelector("#height span").innerHTML = window.innerHeight;
