@@ -1,5 +1,5 @@
 let ball = null
-let dx = -7;
+let dx = -5;
 let dy = -5;
 let ballHOP = 15 // milliseconds aka speed
 bInter = -1
@@ -30,33 +30,8 @@ document.addEventListener("keydown", event => {
     console.log(ball.offsetWidth)
     if(bInter == -1){
       bInter = setInterval(() => {
-        for (let tile of tiles){
-          if(tile.style.backgroundColor != "black"){
-
-            if (isColliding(ball, tile)) {
-              // dy = -dy
-              const ballRect = ball.getBoundingClientRect();
-              const tileRect = tile.getBoundingClientRect();
-              if ((ballRect.left > tileRect.left && dx > 0)
-                || (ballRect.right < tileRect.right && dx < 0)) {
-                dy = -dy
-              }
-              else if ((ballRect.top > tileRect.top && dy < 0)
-                || (ballRect.bottom < tileRect.bottom && dy > 0)) {
-                dx = -dx
-              } else {
-                dx = -dx
-                console.log("Exception")
-                // console.dir(ballRect)
-                // console.dir(tileRect)
-                // clearIntervalHandler()
-              }
-              tile.style.backgroundColor = "black"
-              break;
-            }
-        }
-        }
-
+        handleTileCollision();
+        handleSliderCollision();
         if(parseInt(ball.style.left) <= boardLeft || parseInt(ball.style.left) >= (boardWidth -ball.offsetWidth)){
           dx = -dx
         }
@@ -71,6 +46,46 @@ document.addEventListener("keydown", event => {
   }
 })
 
+function handleSliderCollision(){
+
+  if(isColliding(ball,slider)){
+    dy = -Math.abs(dy)
+    const ballRect = ball.getBoundingClientRect();
+    const sRext = slider.getBoundingClientRect();
+    const ballCenter = (ballRect.left + ballRect.right) / 2
+
+    if(ballCenter < sRext.left + sRext.width*0.2 ) dx = -10
+    else if(ballCenter < sRext.left + sRext.width*0.4) dx = -5
+    else if(ballCenter < sRext.left + sRext.width*0.6) dx = 0
+    else if(ballCenter < sRext.left + sRext.width*0.8) dx = 5
+    else dx = 10
+  }
+}
+
+
+function handleTileCollision() {
+  for (let tile of tiles) {
+    if (tile.style.backgroundColor != "black") {
+
+      if (isColliding(ball, tile)) {
+        const ballRect = ball.getBoundingClientRect();
+        const tileRect = tile.getBoundingClientRect();
+        if ((ballRect.left > tileRect.left && dx > 0)
+          || (ballRect.right < tileRect.right && dx < 0)) {
+          dy = -dy;
+        }
+        else if ((ballRect.top > tileRect.top && dy < 0)
+          || (ballRect.bottom < tileRect.bottom && dy > 0)) {
+          dx = -dx;
+        } else {
+          dx = -dx;
+        }
+        tile.style.backgroundColor = "black";
+        break;
+      }
+    }
+  }
+}
 
 function getBoardComputedStyles(){
   let board = document.getElementById("board");
