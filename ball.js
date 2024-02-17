@@ -1,5 +1,5 @@
 let ball = null
-let dx = -5;
+let dx = -7;
 let dy = -5;
 let ballHOP = 15 // milliseconds aka speed
 bInter = -1
@@ -33,25 +33,25 @@ document.addEventListener("keydown", event => {
         for (let tile of tiles){
           if(tile.style.backgroundColor != "black"){
 
-            if(isColliding(ball, tile)){
-              tile.style.backgroundColor = "black"
+            if (isColliding(ball, tile)) {
+              // dy = -dy
               const ballRect = ball.getBoundingClientRect();
               const tileRect = tile.getBoundingClientRect();
-              if (ballRect.top >= tileRect.top || 
-              ballRect.top <= (tileRect.top + tileRect.height)){
-                console.log("change Y coord")
-
+              if ((ballRect.left > tileRect.left && dx > 0)
+                || (ballRect.right < tileRect.right && dx < 0)) {
                 dy = -dy
               }
-              if(ballRect.left <= tileRect.left
-                || ballRect.left >= (tileRect.left + tileRect.width)){
-                  console.log("change X coord")
-                console.dir( ballRect)
-                console.dir(tileRect)
+              else if ((ballRect.top > tileRect.top && dy < 0)
+                || (ballRect.bottom < tileRect.bottom && dy > 0)) {
                 dx = -dx
+              } else {
+                dx = -dx
+                console.log("Exception")
+                // console.dir(ballRect)
+                // console.dir(tileRect)
+                // clearIntervalHandler()
               }
-              
-              // clearIntervalHandler()
+              tile.style.backgroundColor = "black"
               break;
             }
         }
