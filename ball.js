@@ -91,10 +91,28 @@ function handleTileCollision() {
           dx = -dx;
         }
         tile.style.backgroundColor = "black";
+        if(isGameWon()){
+          welcome.style.display = "inline-block"
+          welcome.innerHTML = "You won, congratulation"
+          clearIntervalHandler()
+        }
         break;
       }
     }
   }
+}
+
+function isGameWon(){
+  for (let tile of tiles)  {
+    if(tile.style.backgroundColor != "black"){
+      console.log("Has more tiles")
+      return false
+    }
+  
+  };
+  console.log("Game won, congrats")
+  return true
+
 }
 
 function getBoardComputedStyles(){
