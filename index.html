@@ -26,8 +26,8 @@
         <div class="dropdown" tabindex="1">
           <i class="db2" tabindex="1"></i>
           <a class="dropbtn">Levels</a>
-           <div class="dropdown-content">
-              <a href="#">Level 1</a>
+           <div class="dropdown-content" onclick="handleBoardChange()">
+              <a href="?level=1">Level 1</a>
               <a href="?level=2">Level 2</a>
               <a href="?level=3">Level 3</a>
            </div>
@@ -55,7 +55,6 @@
     livesDisplay.innerHTML = lives
     const pauseBtn = document.getElementById("pause")
 
-    
     fastForwardBtn.addEventListener('click', () => {
       isFastForward = !isFastForward
       fastForwardBtn.style.backgroundColor = isFastForward ? "rgb(0,125,0)" : "black"
@@ -82,10 +81,21 @@
     initBall();
 
     getWindowSize();
-    // Initial update
-    // fiveTimesSevenBoard("cube")
-    // fiveTimesSevenBoard("asterix")
-    fiveTimesSevenBoard()
+    function handleBoardChange(){
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const level = urlParams.get('level')
+      document.getElementById("grid-container").innerHTML = ""
+      if(level == 1 || level == null){
+        fiveTimesSevenBoard()
+      }if(level == 2){
+        fiveTimesSevenBoard("asterix")
+      }if(level == 3){
+        fiveTimesSevenBoard("cube")
+      }
+
+    }
+    handleBoardChange()
   </script>
 
 
