@@ -17,7 +17,10 @@ function fiveTimesSevenBoard(boardType){
   }
 }
 function fiveTimesSevenLayout(i,j,type){
-  if(type === "cube"){
+  if(type === "test"){
+    return i == 5 && j==1 ? "rgb(155,72,0)" : "black";
+  }
+  else if(type === "cube"){
     return i == 0 ? "rgb(155,0,0)" : 
     i == 1 ? j == 2 ? "black" : "rgb(155,72,0)" : 
     i == 2 ? [1,2,3].contains(j) ? "black": "rgb(155,155,0)":

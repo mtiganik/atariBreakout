@@ -25,7 +25,7 @@ document.addEventListener("keydown", event => {
     pauseBtn.src =  "images/pause.svg"
     const welcome = document.getElementById("welcome")
     welcome.style.display = "none"
-
+    startTime = Date.now();
     let [boardWidth,boardHeight, boardLeft, boardTop] = getBoardComputedStyles();
     console.log(ball.offsetWidth)
     if(bInter == -1){
@@ -92,8 +92,10 @@ function handleTileCollision() {
         }
         tile.style.backgroundColor = "black";
         if(isGameWon()){
+          var delta = Date.now() - startTime
+
           welcome.style.display = "inline-block"
-          welcome.innerHTML = "You won, congratulation"
+          welcome.innerHTML = "You won, time: " + (Math.floor(delta / 1000)) + "." + (Math.floor((delta%1000) / 10)) + " sec"
           clearIntervalHandler()
         }
         break;
@@ -105,12 +107,9 @@ function handleTileCollision() {
 function isGameWon(){
   for (let tile of tiles)  {
     if(tile.style.backgroundColor != "black"){
-      console.log("Has more tiles")
       return false
     }
-  
   };
-  console.log("Game won, congrats")
   return true
 
 }

@@ -34,11 +34,14 @@
 }
 
 .right-menu-items {
+  display: flex;
   margin-top: 0px;
   margin-left:auto;
   margin-right: 0px;
 }
-
+.right-menu-items > * {
+  padding: 5px;
+}
 /* .ball {
   position: absolute;
   background-color: white;

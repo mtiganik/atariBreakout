@@ -23,6 +23,7 @@
         <span id="lives"> </span>
       </div>
       <div class="right-menu-items" >
+        <button class="leaderboardBtn" id="leaderboardBtn" onclick="handleLeaderboardClick()">Leaderboard</button>
         <div class="dropdown" tabindex="1">
           <i class="db2" tabindex="1"></i>
           <a class="dropbtn">Levels</a>
@@ -51,6 +52,7 @@
     let isPause = true
     let tiles = []
     let lives = 5
+    let startTime = null
     const livesDisplay = document.getElementById("lives")
     livesDisplay.innerHTML = lives
     const pauseBtn = document.getElementById("pause")
@@ -87,7 +89,7 @@
       const level = urlParams.get('level')
       document.getElementById("grid-container").innerHTML = ""
       if(level == 1 || level == null){
-        fiveTimesSevenBoard()
+        fiveTimesSevenBoard("test")
       }if(level == 2){
         fiveTimesSevenBoard("asterix")
       }if(level == 3){
