@@ -19,8 +19,8 @@
   <div class="board" id="board">
     <div class="header">
       <div class="left-menu-items">
-        <span id="height">H: <span></span></span>
-        <span id="width">W: <span></span></span>
+        <span id="livesText">Lives: <span></span></span>
+        <span id="lives"> </span>
       </div>
       <div class="right-menu-items" >
         <div class="dropdown" tabindex="1">
@@ -50,6 +50,9 @@
     let isFastForward = false
     let isPause = true
     let tiles = []
+    let lives = 5
+    const livesDisplay = document.getElementById("lives")
+    livesDisplay.innerHTML = lives
     const pauseBtn = document.getElementById("pause")
 
     
@@ -70,8 +73,6 @@
   })
 
     function getWindowSize() {
-      document.querySelector("#height span").innerHTML = window.innerHeight;
-      document.querySelector("#width span").innerHTML = window.innerWidth;
       sliderItem.style.left = window.innerWidth / 2.5 + "px"
     }
 

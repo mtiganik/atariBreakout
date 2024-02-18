@@ -35,8 +35,18 @@ document.addEventListener("keydown", event => {
         if(parseInt(ball.style.left) <= boardLeft || parseInt(ball.style.left) >= (boardWidth -ball.offsetWidth)){
           dx = -dx
         }
-        if(parseInt(ball.style.top) <= boardTop || parseInt(ball.style.top) >= (boardHeight- ball.offsetHeight)){
+        if(parseInt(ball.style.top) <= boardTop ){
           dy = -dy
+        }
+        if(parseInt(ball.style.top) >= (boardHeight- ball.offsetHeight)){
+          dy = -dy
+          lives = lives -1
+          livesDisplay.innerHTML = lives
+          if(lives == 0){
+            welcome.style.display = "inline-block"
+            welcome.innerHTML = "Game lost. Out of lives"
+            clearIntervalHandler()
+          }
         }
         ball.style.left = parseInt(ball.style.left) + dx + "px"
         ball.style.top = parseInt(ball.style.top) + dy + "px"
@@ -70,8 +80,8 @@ function handleTileCollision() {
       if (isColliding(ball, tile)) {
         const ballRect = ball.getBoundingClientRect();
         const tileRect = tile.getBoundingClientRect();
-        if ((ballRect.left > tileRect.left && dx > 0)
-          || (ballRect.right < tileRect.right && dx < 0)) {
+        if ((ballRect.left > tileRect.left && dx >= 0)
+          || (ballRect.right < tileRect.right && dx <= 0)) {
           dy = -dy;
         }
         else if ((ballRect.top > tileRect.top && dy < 0)

@@ -2,7 +2,7 @@
 // SLIDER movement
 let sliderItem = null
 let sInter = -1;
-let sHOP = 30; // milliseconds aka speed
+let sHOP = 15; // milliseconds aka speed
 // Touch screen handle
 let touchPosX = 0 // x coordinate of touch position
 
