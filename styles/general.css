@@ -42,19 +42,21 @@
 .right-menu-items > * {
   padding: 5px;
 }
-/* .ball {
-  position: absolute;
-  background-color: white;
-  width: 20px;
-  height: 20px;
-  bottom: 30px;
-  border-radius: 10px;
-  left: 50%
-} */
 
 .welcome {
   justify-content: center;
   width: 100%;
   color: white;
   text-align: center;
+}
+
+.leaderboard {
+  display:none;
+  background-color: white;
+  /* position: absolute; */
+  width: fit-content;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+
 }

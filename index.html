@@ -6,16 +6,14 @@
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="styles/general.css">
   <link rel="stylesheet" href="styles/dropdown.css">
+  <script src="jquery-3.7.1.min.js"></script>
   <script src="boards.js" ></script>
   <script src="slider.js"></script>
   <script src="ball.js"></script>
+  <script src="leaderboard.js"></script>
   <title>Atari Breakout</title>
-  <script>
-    
-  </script>
 </head>
 <body>
-  
   <div class="board" id="board">
     <div class="header">
       <div class="left-menu-items">
@@ -23,21 +21,26 @@
         <span id="lives"> </span>
       </div>
       <div class="right-menu-items" >
-        <button class="leaderboardBtn" id="leaderboardBtn" onclick="handleLeaderboardClick()">Leaderboard</button>
+        <button class="leaderboardBtn" id="leaderboardBtn" onclick="handleLeaderboardBtnClick()">Leaderboard</button>
         <div class="dropdown" tabindex="1">
           <i class="db2" tabindex="1"></i>
           <a class="dropbtn">Levels</a>
-           <div class="dropdown-content" onclick="handleBoardChange()">
-              <a href="?level=1">Level 1</a>
-              <a href="?level=2">Level 2</a>
-              <a href="?level=3">Level 3</a>
-           </div>
+          <div class="dropdown-content" onclick="handleBoardChange()">
+            <a href="?level=1">Level 1</a>
+            <a href="?level=2">Level 2</a>
+            <a href="?level=3">Level 3</a>
+          </div>
         </div>
         <img id="fastForward" class="fastForward" src="images/fast-forward.svg" alt="Fast Forward">
         <img id="pause" class="pause" src="images/pause.svg" alt="Pause">
         
       </div>
     </div>
+    <iframe src="leaderboard.html" title="Leaderboard" id="leaderboard" class="leaderboard"></iframe>
+    <!-- <div id="includeHtml"></div> -->
+    <!-- <div id="leaderboard" class="leaderboard">
+      
+    </div> -->
     <div class="grid-container" id="grid-container">
     </div>
     <div class="welcome" id="welcome">Press any key to start</div>
@@ -89,7 +92,7 @@
       const level = urlParams.get('level')
       document.getElementById("grid-container").innerHTML = ""
       if(level == 1 || level == null){
-        fiveTimesSevenBoard("test")
+        fiveTimesSevenBoard()
       }if(level == 2){
         fiveTimesSevenBoard("asterix")
       }if(level == 3){
