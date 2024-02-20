@@ -5,7 +5,6 @@ let sInter = -1;
 let sHOP = 15; // milliseconds aka speed
 // Touch screen handle
 let touchPosX = 0 // x coordinate of touch position
-
 function initSlider() {
   sliderItem = document.getElementById("slider")
   sliderItem.style.position = "absolute"
@@ -43,11 +42,17 @@ document.addEventListener("keydown", event => {
   if(sInter == -1){
     let e = event.code
     sInter = setInterval(function(){
+      sRec = sliderItem.getBoundingClientRect()
       if(event.code == "ArrowLeft"){ // left
-        moveLeft()
+        if(sRec.left > 0){
+          moveLeft()
+        }
       }
       if(event.code == "ArrowRight"){ // right
-        moveRight()
+        console.log(sliderItem.style.right)
+        if(sRec.right < window.innerWidth){
+          moveRight()
+        }
       }
     } , sHOP)
   }
