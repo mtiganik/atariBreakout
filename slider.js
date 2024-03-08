@@ -40,7 +40,6 @@ function handleTouchMove(event) {
 // Keypress handle
 document.addEventListener("keydown", event => {
   if(sInter == -1){
-    let e = event.code
     sInter = setInterval(function(){
       sRec = sliderItem.getBoundingClientRect()
       if(event.code == "ArrowLeft"){ // left

@@ -18,8 +18,10 @@ function initBall() {
   ball.style.top = parseInt(ballComputedStyle.top) + "px"
 
 }
+document.addEventListener("keydown", handleBallMovement, false)
+document.addEventListener("touchstart", handleBallMovement, false)
 
-document.addEventListener("keydown", event => {
+function handleBallMovement(){
   if(isPause){
     isPause = false
     pauseBtn.src =  "images/pause.svg"
@@ -54,7 +56,7 @@ document.addEventListener("keydown", event => {
     }
 
   }
-})
+}
 
 function handleSliderCollision(){
 
