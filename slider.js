@@ -37,7 +37,7 @@ function handleTouchMove(event) {
 }
 
 
-// Keypress handle
+// Keypress handle!
 document.addEventListener("keydown", event => {
   if(sInter == -1){
     sInter = setInterval(function(){
